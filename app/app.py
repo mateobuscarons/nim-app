@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -7,9 +7,14 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Load config from environment (to be set via ConfigMap)
+api_key = os.environ.get("NVIDIA_API_KEY")
+base_url = os.environ.get("NVIDIA_API_BASE_URL", "https://integrate.api.nvidia.com/v1")
+model_name = os.environ.get("NVIDIA_MODEL_NAME", "nvidia/llama-3.3-nemotron-super-49b-v1")
+
 client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.environ.get("NVIDIA_API_KEY")
+    base_url=base_url,
+    api_key=api_key
 )
 
 @app.route('/')
@@ -21,10 +26,10 @@ def generate():
     user_prompt = request.json.get('prompt', '')
     if not user_prompt:
         return jsonify({"error": "No prompt provided"}), 400
-    
+
     try:
         completion = client.chat.completions.create(
-            model="nvidia/llama-3.3-nemotron-super-49b-v1",
+            model=model_name,
             messages=[
                 {"role": "system", "content": "You are a Finance expert assistant. Provide helpful, accurate, and concise responses about finance topics. Format your responses using Markdown for better readability when appropriate."},
                 {"role": "user", "content": user_prompt}
@@ -35,7 +40,6 @@ def generate():
             frequency_penalty=0,
             presence_penalty=0
         )
-        
         return jsonify({"response": completion.choices[0].message.content})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
