@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: demo-app
+  namespace: demo-project
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'demo-app:latest'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/smichard/nim-app'
+      ref: main
+    contextDir: ''
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
