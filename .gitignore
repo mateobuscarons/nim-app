@@ -1,2 +1,4 @@
 kubectl
 openshift-client-linux.tar.gz
+.env
+*/.env
