@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # Load config from environment (to be set via ConfigMap)
 api_key = os.environ.get("API_KEY")
-base_url = os.environ.get("API_BASE_URL", "https://integrate.api.nvidia.com/v1")
-model_name = os.environ.get("MODEL_NAME", "nvidia/llama-3.3-nemotron-super-49b-v1")
+base_url = os.environ.get("API_BASE_URL")
+model_name = os.environ.get("MODEL_NAME")
 
 client = OpenAI(
     base_url=base_url,
@@ -36,7 +36,7 @@ def generate():
             ],
             temperature=0.6,
             top_p=0.7,
-            max_tokens=1024,
+            max_tokens=450,
             frequency_penalty=0,
             presence_penalty=0
         )
