@@ -119,8 +119,9 @@ Configure and deploy the selected model
 
 ### Access Model:
 
-Note the External Link (endpoint) for your model
-Securely store the API Key provided
+Note the External Link (endpoint).
+
+Securely store the API Key provided.
 
 ![OpenShift AI Console Screenshot](./images/Model_deployment.png "BASE URL")
 
