@@ -113,13 +113,16 @@ Choose the specific model you want to deploy
 ### Deploy Model:
 
 Configure and deploy the selected model
-(See picture below)
+
+![OpenShift AI Console Screenshot](./images/nim.png "NIM Deployment")
 
 
 ### Access Model:
 
 Note the External Link (endpoint) for your model
 Securely store the API Key provided
+
+![OpenShift AI Console Screenshot](./images/Model_deployment.png "BASE URL")
 
 
 # Change the model within OpenShift
