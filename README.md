@@ -91,3 +91,38 @@ To clean up all deployed resources from your OpenShift environment:
 oc delete project demo-project
 ```
 This will delete the namespace and all associated resources including deployments, services, routes, secrets, and image streams.
+
+
+# Deploying NVIDIA NIM in OpenShift AI
+
+Deploying NVIDIA NIM with OpenShift AI
+To deploy an NVIDIA NIM model that can be used with your application:
+
+### Create Project:
+
+Access the OpenShift AI dashboard
+Create a new project to host your NVIDIA NIM model
+
+
+### Serve Model:
+
+Select NVIDIA NIM as the model provider
+Choose the specific model you want to deploy
+
+
+### Deploy Model:
+
+Configure and deploy the selected model
+(See picture below)
+
+
+### Access Model:
+
+Note the External Link (endpoint) for your model
+Securely store the API Key provided
+
+
+# Change the model within OpenShift
+
+In the Developer Tab, go to ConfigMaps-> demo-app-config -> Actions -> Edit ConfigMap, adjust the parameters with the new Base URL and Model Name.
+Go to Secrets, (demo-app-secrets) do the same with the API KEY for the model. 
