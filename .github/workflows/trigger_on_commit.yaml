@@ -1,0 +1,60 @@
+name: on-commit
+on:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  bump_tag:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
+
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.71.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEFAULT_BUMP: patch
+        DEFAULT_BRANCH: main
+        WITH_V: false
+ 
+  build_and_push:
+    needs: changelog
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Log in to target registry
+      run: |
+        echo ${{ secrets.TARGET_REGISTRY_PASSWORD }} | docker login quay.io -u ${{ secrets.TARGET_REGISTRY_USERNAME }} --password-stdin
+
+    - name: Get tag from bumped version
+      id: tag
+      run: |
+        # Fetch the latest changes
+        git fetch --tags
+        TAG=$(git describe --tags --abbrev=0 || echo "latest")
+        echo "TAG=$TAG" >> $GITHUB_ENV
+        echo "Current build tag:"
+        echo $TAG
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build container image and push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        file: Containerfile
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: quay.io/michard/cities:${{ env.TAG }},quay.io/michard/cities:latest
