@@ -4,7 +4,7 @@
     "config:recommended", 
     ":dependencyDashboard"
   ],
-  "deploy": {
-    "fileMatch": ["k8s/.+\\.yml$"]
+  "kubernetes": {
+    "fileMatch": ["deploy/.+\\.yml$"]
   }
 }
