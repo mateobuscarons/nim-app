@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nim-app-gitops
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/mateobuscarons/nim-app'
+    targetRevision: main
+    path: deploy
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: nim-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+#  ignoreDifferences:
+#    - group: apps
+#      kind: Deployment
+#      jsonPointers:
+#        - /spec/replicas
+    directory:
+      exclude: 'secrets.yaml'
