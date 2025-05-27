@@ -1,6 +1,9 @@
 name: on-commit
 on:
   push:
+    paths:
+      # - 'Dockerfile'
+      # - 'app/**'
 
 concurrency:
   group: ${{ github.workflow }}
