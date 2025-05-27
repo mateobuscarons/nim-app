@@ -20,7 +20,7 @@ python app.py
 
 4. Open your browser at: http://localhost:8080
 
-## Build App Using OpenShift
+## Build App Using OpenShift (optional)
 Follow these steps to build the application image directly in OpenShift using the provided resources:
 
 1. Create the namespace:
@@ -30,7 +30,7 @@ oc apply -f build/namespace.yaml
 
 2. Switch to the new project:
 ```bash
-oc project demo-project
+oc project nim-app
 ```
 
 3. Create the ImageStream:
