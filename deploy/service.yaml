@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-app
-  namespace: demo-project
+  name: nim-app
+  namespace: nim-app
 spec:
   selector:
-    app: demo-app
+    app: nim-app
   ports:
     - protocol: TCP
       port: 80
