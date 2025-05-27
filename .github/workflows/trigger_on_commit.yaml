@@ -57,4 +57,4 @@ jobs:
         file: Containerfile
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: quay.io/michard/cities:${{ env.TAG }},quay.io/michard/cities:latest
+        tags: quay.io/pbuscaronskrieger/nim-app:${{ env.TAG }},quay.io/pbuscaronskrieger/nim-app:latest
