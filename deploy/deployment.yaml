@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-app
-  namespace: demo-project
+  name: nim-app
+  namespace: nim-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-app
+      app: nim-app
   template:
     metadata:
       labels:
-        app: demo-app
+        app: nim-app
     spec:
       containers:
-        - name: demo-app
+        - name: nim-app
           image: quay.io/pbuscaronskrieger/nim-app:0.0.1
           ports:
             - containerPort: 8080
@@ -22,15 +22,15 @@ spec:
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: demo-app-secrets
+                  name: nim-app-secrets
                   key: api-key
             - name: API_BASE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: demo-app-config
+                  name: nim-app-config
                   key: API_BASE_URL
             - name: MODEL_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: demo-app-config
+                  name: nim-app-config
                   key: MODEL_NAME
