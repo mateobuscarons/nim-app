@@ -24,7 +24,7 @@ jobs:
         WITH_V: false
  
   build_and_push:
-    needs: changelog
+    needs: bump_tag
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
@@ -54,7 +54,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        file: Containerfile
+        file: Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: quay.io/michard/cities:${{ env.TAG }},quay.io/michard/cities:latest
+        tags: quay.io/pbuscaronskrieger/nim-app:${{ env.TAG }},quay.io/pbuscaronskrieger/nim-app:latest

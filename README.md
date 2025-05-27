@@ -1,5 +1,7 @@
 # MVP
 
+[![GitHub Workflow](https://github.com/mateobuscarons/nim-app/actions/workflows/trigger_on_commit.yaml/badge.svg)](https://github.com/mateobuscarons/nim-app/actions/workflows/trigger_on_commit.yaml) [![Docker Repository on Quay](https://quay.io/repository/pbuscaronskrieger/nim-app/status "Docker Repository on Quay")](https://quay.io/repository/pbuscaronskrieger/nim-app)
+
 ## How to run locally
 1. Copy the `.env_example`file and populate with your values:
 ```bash
