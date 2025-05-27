@@ -5,6 +5,6 @@
     ":dependencyDashboard"
   ],
   "kubernetes": {
-    "fileMatch": ["deploy/.+\\.yml$"]
+    "fileMatch": ["deploy/.+\\.yaml$"]
   }
 }
