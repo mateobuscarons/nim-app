@@ -9,6 +9,9 @@ spec:
     repoURL: 'https://github.com/mateobuscarons/nim-app'
     targetRevision: main
     path: deploy
+    directory:
+      # Exclude config_map.yaml and secret.yaml from being processed by Argo CD
+      exclude: '{config_map.yaml,secret.yaml}'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: nim-app
@@ -18,10 +21,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-#  ignoreDifferences:
-#    - group: apps
-#      kind: Deployment
-#      jsonPointers:
-#        - /spec/replicas
-    directory:
-      exclude: 'secrets.yaml'
