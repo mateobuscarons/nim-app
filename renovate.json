@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended"
   ],
-  "deploy": {
-    "fileMatch": ["k8s/.+\\.yml$"]
+  "dependencyDashboard": true,
+  "kubernetes": {
+    "fileMatch": ["deploy/.+\\.yaml$"]
   }
 }
