@@ -11,7 +11,6 @@ spec:
     path: deploy
     directory:
       # Exclude config_map.yaml and secret.yaml from being processed by Argo CD
-      # The pattern uses curly braces {} to specify a list of exact filenames.
       exclude: '{config_map.yaml,secret.yaml}'
   destination:
     server: 'https://kubernetes.default.svc'
