@@ -97,6 +97,11 @@ This will delete the namespace and all associated resources including deployment
 
 # Deploying NVIDIA NIM in OpenShift AI
 
+NGC Catalog
+Generate API Key
+Legacy Keys -> Generate Legacy Key
+Enable NVIDIA NIMs
+
 Deploying NVIDIA NIM with OpenShift AI
 To deploy an NVIDIA NIM model that can be used with your application:
 
